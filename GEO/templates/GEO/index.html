@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+{% load leaflet_tags %}
+<head>
+	{% leaflet_js %}
+	{% leaflet_css %}
+	<title>Our Home</title>
+	<style type="text/css">
+		#gis {width: 100%;height:600px;}
+	</style>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.css">	
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.EasyButton/2.4.0/easy-button.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-sidebar@0.2.0/src/L.Control.Sidebar.css" />
+
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-groupedlayercontrol/0.6.1/leaflet.groupedlayercontrol.css">	
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.js">	</script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-groupedlayercontrol/0.6.1/leaflet.groupedlayercontrol.js" ></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.EasyButton/2.4.0/easy-button.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.EasyButton/2.4.0/easy-button.js" ></script>	
+	
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/leaflet-sidebar@0.2.0/src/L.Control.Sidebar.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-providers/1.10.0/leaflet-providers.js"></script>
+	
+	<style>
+.leaflet-control-layers {
+		width: auto;
+		overflow: auto;
+
+	  }
+
+.leaflet-sidebar .close {
+  right: 15px !important;
+
+}
+/*Legend specific*/
+.legend {
+  padding: 6px 8px;
+  font: 14px Arial, Helvetica, sans-serif;
+  background: white;
+  background: rgba(255, 255, 255, 0.8);
+  /*box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);*/
+  /*border-radius: 5px;*/
+  line-height: 24px;
+  color: #555;
+}
+.legend h4 {
+  text-align: center;
+  font-size: 16px;
+  margin: 2px 12px 8px;
+  color: #777;
+}
+
+.legend span {
+  position: relative;
+  bottom: 3px;
+}
+
+.legend i {
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin: 0 8px 0 0;
+  opacity: 0.7;
+}
+
+.legend i.icon {
+  background-size: 18px;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+body {
+        padding: 0;
+        margin: 0;
+    }
+    html, body, #gis {
+        height: 100%;
+        width: 100%;
+    }
+</style>
+</head>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.js" ></script>
+<body>
+<div id="sidebar" >
+</div>
+
+<script type="text/javascript">
+	function our_layers(map,options){
+		var osm = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
+				attribution: ''
+			}).addTo(map);
+
+
+
+		var points = new L.GeoJSON.AJAX("{% url 'GEO:toledo_datasets' %}",{
+			style: style,
+
+			pointToLayer: function (feature, latlng) {
+				return L.circle(latlng,geojsonMarkerOptions ).on('click', function () {     
+			  sidebar.show();
+			});
+			},
+			onEachFeature: function(feature,layer){
+			layer.bindPopup("GVI: "+ "<strong>"+feature.properties.greenview+"</strong>" +" %");
+			  var url0 = feature.properties.url0;
+			  var url60 = feature.properties.url60;
+			  var url120 = feature.properties.url120;
+			  var url180 = feature.properties.url180;
+			  var url240 = feature.properties.url240;
+			  var url300 = feature.properties.url300;
+				if (url0 !== null) {
+					layer.on('click', function (e) {
+						document.getElementById("info3").innerHTML ='<img style="width:100%" src="' + url0 + '">'+"</p>"+'<img style="width:100%" src="' + url60 + '">'+"</p>"+'<img style="width:100%" src="' + url120 + '">'+'<img style="width:100%" src="' + url180 + '">'+'<img style="width:100%" src="' + url240 + '">'+'<img style="width:100%" src="' + url300 + '">';
+									el.addData(feature); });
+						} else {
+						layer.on('click', function (e) {
+						document.getElementById("info3").innerHTML = ' <h5>GVI</h5>'+ feature.properties.greenview +' %';
+						el.clear();
+						el.addData(feature); });
+						}
+
+					layer.on('mouseover', function () {
+
+						this.setStyle({
+						  color: '#f8585a'
+							});
+						});
+					layer.on('mouseout', function () {
+						points.resetStyle(this);
+						});
+						}
+			});
+
+ 
+
+	   var sidebar = L.control.sidebar('sidebar', {
+		closeButton: true,
+		position: 'right',
+		autoPan: false,
+
+		});
+
+		map.addControl(sidebar);
+		L.DomEvent.on(sidebar.getCloseButton(), 'click', function () {
+		});
+		sidebar.setContent('<div id="info3"></div>');
+		map.on('click', function () {
+		sidebar.hide();
+		})
+
+		//set circleMarker
+
+		var geojsonMarkerOptions = {
+		radius: 10,
+		weight: 2,
+		opacity: 1,
+		fillOpacity: 0.9
+		};
+		function getColor(d) {
+		return d === '<10'  ? "#FFAD73" :
+			   d === '<20'  ? "#FFF434" :
+			   d === '<30' ? "#BFFF5B" :
+			   d === '<40' ? "#4ADA76" :
+							"#1AE19F";
+	}
+		//change color depending of greenview atribute
+
+	function style(feature) {
+		var mag = feature.properties.greenview;
+		  if (mag >= 0 && mag <= 10) {
+			return { color: "#FFAD73" }; 
+		  } 
+
+		  else if (mag >= 10 && mag <= 20 ) {
+			return { color: "#FFF434" };
+		  } 
+		  else if (mag >= 20 && mag <= 30) {
+			return { color: "#BFFF5B" };
+		  } 
+		  else if (mag >= 30 && mag <= 40) {
+			return { color: "#4ADA76" };
+		  } 
+			else if (mag >= 40 && mag <= 80) {
+			return { color: "#1AE19F" };
+		  } ;
+			}
+
+		//datasets.addTo(map);
+		points.addTo(map);
+		
+		//add base LAyers and groupedOverlays 
+
+		var baseLayers = {
+			"OSM": osm,
+		}
+
+		var groupedOverlays = {
+		  "Layers": {
+			"toledo": points
+		  }
+
+		};
+
+
+	var legend = L.control({position: 'topleft'});
+    legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend');
+    labels = ['<a href="#des"style="color: #323432; class="pointer" ><strong>GVI %</strong></a>'],
+    categories = ['<10','<20','<30','<40','+50'];
+
+    for (var i = 0; i < categories.length; i++) {
+
+            div.innerHTML += 
+            labels.push(
+                '<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
+            (categories[i] ? categories[i] : '+'));
+
+        }
+        div.innerHTML = labels.join('<br>');
+    return div;
+    };
+    legend.addTo(map);
+ 
+
+
+		L.control.groupedLayers(baseLayers, groupedOverlays).addTo(map);
+		map.removeControl(map.zoomControl);
+
+
+	}
+
+</script>
+{% leaflet_map "gis" callback="window.our_layers" %}
+</body>
+</html>
