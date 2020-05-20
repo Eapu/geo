@@ -9,5 +9,5 @@ The scripts load.py load_lpa.py are used to load the data to the models in djang
 
 The project can be found at https://geosurikat.herokuapp.com/
 
-![Image description](https://elenacube.s3-eu-west-1.amazonaws.com/abril/geo.png
-)
+![Image description](https://elenacube.s3-eu-west-1.amazonaws.com/abril/geo0.png)
+![Image description](https://elenacube.s3-eu-west-1.amazonaws.com/abril/geo1.png)
