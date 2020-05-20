@@ -6,94 +6,21 @@
 	{% leaflet_js %}
 	{% leaflet_css %}
 	<title>Geosurikat</title>
-
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.css">	
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.EasyButton/2.4.0/easy-button.css">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-sidebar@0.2.0/src/L.Control.Sidebar.css" />
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-groupedlayercontrol/0.6.1/leaflet.groupedlayercontrol.css">	
-
-    <script src='https://unpkg.com/jquery@3.2.1/dist/jquery.min.js'></script>
-    <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/base-min.css">
-    <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/buttons-min.css">
-    <script src='https://unpkg.com/jquery@3.2.1/dist/jquery.min.js'></script>
-    <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/base-min.css">
-    <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/buttons-min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" type="text/css">
-
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.js">	</script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-groupedlayercontrol/0.6.1/leaflet.groupedlayercontrol.js" ></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.EasyButton/2.4.0/easy-button.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.EasyButton/2.4.0/easy-button.js" ></script>		
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/leaflet-sidebar@0.2.0/src/L.Control.Sidebar.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-providers/1.10.0/leaflet-providers.js"></script>	
-<style>
-html, body, #map {
-  height: 100%;
-  margin: 0;
-}
-.leaflet-control-layers {
-		width: auto;
-		overflow: auto;
-	  }
-#sidebar {
-    height: 800px !important;
-}
-/*Legend specific*/
-.legend {
-  padding: 6px 8px;
-  font: 14px Arial, Helvetica, sans-serif;
-  background: white;
-  background: rgba(255, 255, 255, 1);
-  /*box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);*/
-  /*border-radius: 5px;*/
-  line-height: 24px;
-  color: #555;
-}
-.legend h4 {
-  text-align: center;
-  font-size: 16px;
-  margin: 2px 12px 8px;
-  color: #777;
-}
-.legend span {
-  position: relative;
-  bottom: 3px;
-}
-.legend i {
-  width: 18px;
-  height: 18px;
-  float: left;
-  margin: 0 8px 0 0;
-  opacity: 0.8;
-}
-.legend i.icon {
-  background-size: 18px;
-  background-color: rgba(255, 255, 255, 1);
-}
-.button-line{
-  z-index: 1000;
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: 10px;
-}
-.pure-button-group{
-  margin-bottom: 10px;
-}
-#button-show, #button-hide, #button-fly-lpa, #button-fly-tod{
-  font-size: 85%;
-  color: white;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-}
-#button-fly-lpa, #button-fly-tod{
-  background: rgb(28, 184, 65);
-}
-#button-show, #button-hide{
-  background: rgb(223, 117, 20);
-}
-</style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.EasyButton/2.4.0/easy-button.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-sidebar@0.2.0/src/L.Control.Sidebar.css" />
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-groupedlayercontrol/0.6.1/leaflet.groupedlayercontrol.css">	
+<link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/base-min.css">
+<link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/buttons-min.css">
+<link rel="stylesheet" href="https://elenacube.s3-eu-west-1.amazonaws.com/abril/style.css">
+<script src='https://unpkg.com/jquery@3.2.1/dist/jquery.min.js'></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.js">	</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-groupedlayercontrol/0.6.1/leaflet.groupedlayercontrol.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.EasyButton/2.4.0/easy-button.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/leaflet-sidebar@0.2.0/src/L.Control.Sidebar.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-providers/1.10.0/leaflet-providers.js"></script>
+<script src='https://unpkg.com/jquery@3.2.1/dist/jquery.min.js'></script>
 </head>
-
 <body>
 <div id="sidebar" >
 </div>
@@ -275,39 +202,33 @@ html, body, #map {
 
    // FLY-TO BUTTONS -------------------------------------
     var tod   = [39.8629528,-4.0286738];
-    var lpa       = [28.125698,-15.4318027];
+   	var lpa       = [28.125698,-15.4318027];
 
-    var all_buttons =
-      '#button-fly-lpa, #button-fly-tod';
+    var all_buttons ='#button-fly-lpa, #button-fly-tod';
 
-    $('#button-fly-lpa').on('click', function(){
-      $(all_buttons).removeClass('pure-button-disabled');
-          map.addLayer(points_lpa);
-
-      map.flyTo(lpa, 16);
+   	$('#button-fly-lpa').on('click', function(){
+ 		$(all_buttons).removeClass('pure-button-disabled');
+		map.addLayer(points_lpa);
+      	map.flyTo(lpa, 16);
     });
 
     $('#button-fly-tod').on('click', function(){
-      $(all_buttons).removeClass('pure-button-disabled');
-      map.flyTo(tod, 16);
+    	$(all_buttons).removeClass('pure-button-disabled');
+    	map.flyTo(tod, 16);
     });
 
-   // create legend -------------------------------------
+   	// create legend -------------------------------------
 
 	var legend = L.control({position: 'topleft'});
     legend.onAdd = function (map) {
-
-    var div = L.DomUtil.create('div', 'info legend');
-    labels = ['<a href="#des"style="color: #323432; class="pointer" ><strong>GVI %</strong></a>'],
-    categories = ['<10','<20','<30','<40','+50'];
-
-    for (var i = 0; i < categories.length; i++) {
-
+    	var div = L.DomUtil.create('div', 'info legend');
+   		labels = ['<a href="#des"style="color: #323432; class="pointer" ><strong>GVI %</strong></a>'],
+   		categories = ['<10','<20','<30','<40','+50'];
+    	for (var i = 0; i < categories.length; i++) {
             div.innerHTML += 
             labels.push(
                 '<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
             (categories[i] ? categories[i] : '+'));
-
         }
         div.innerHTML = labels.join('<br>');
     return div;
@@ -315,15 +236,14 @@ html, body, #map {
     legend.addTo(map);
  
 
+   	// add groupedLayers -------------------------------------
 
 	L.control.groupedLayers(baseLayers, groupedOverlays, {position: 'topleft'}).addTo(map);
 	map.removeControl(map.zoomControl);
-
 
 	}
 
 </script>
 {% leaflet_map "map" callback="window.our_layers" %}
 </body>
-
 </html>
