@@ -1,4 +1,4 @@
-# geo
+# geosurikat
 Geodjango, Leaflet , Treepedia 
 
 Treepedia algorithm is used for this project(http://senseable.mit.edu/treepedia)
